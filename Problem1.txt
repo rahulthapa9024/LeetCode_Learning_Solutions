@@ -1,0 +1,22 @@
+Merge Strings Alternately :- Easy
+
+class Solution {
+public:
+    string mergeAlternately(string word1, string word2) {
+       string ans = ""; // my result string to store final result
+
+       int i = 0; // my iteration variable 
+
+       while (i < word1.length() || i < word2.length()) // iterating both string together using OR 
+       {
+        if(i < word1.length()){   //checking if word1 index out of bound
+            ans += word1[i]; // adding letter in the result variable
+        }
+        if(i < word2.length()){ //checking if word2 index out of bound
+            ans += word2[i]; // adding letter in the result variable
+        }
+        i++; // incrementing the iterator
+       }
+       return ans; // returning the final answer
+    }
+};
