@@ -1,0 +1,76 @@
+Reverse Words in a String
+Medium
+
+
+//My approch 
+class Solution {
+public:
+    string reverseWords(string s) {
+        vector<string> temp;
+        string result = "";
+        int len = s.length();
+        int i = 0;
+
+        while(i < len) {
+            string t = "";
+
+            // skip spaces
+            while(i < len && s[i] == ' ') {
+                i++;
+            }
+
+            int j = i;
+
+            // collect word
+            while(j < len && s[j] != ' ') {
+                t += s[j];
+                j++;
+            }
+
+            if(t != "") {
+                temp.push_back(t);
+            }
+
+            i = j;
+        }
+
+        // reverse order
+        for(int k = temp.size() - 1; k >= 0; k--) {
+            result += temp[k];
+
+            if(k != 0) {
+                result += " ";
+            }
+        }
+
+        return result;
+    }
+};
+
+// optimal approch
+
+
+class Solution {
+public:
+    string reverseWords(string s) {
+        stringstream ss(s); //using stringstream DS to iterate over the string s
+        string result = ""; // the result string
+        string word; //to store each word
+        vector<string> temp; // to construct the array of words
+        int size = s.length(); //size of s
+
+        while(ss >> word){
+            temp.push_back(word); // taking each word at a time from ss and putting it into word and then push in temp
+        }
+
+        for(int i = temp.size() - 1 ; i >= 0; i--){ // reverse iterating the temp and storeing words in reverse in result
+            result += temp[i];
+            if(i != 0){
+                result += " ";  // adding space after each words except the first word 
+            }
+        }
+
+        return result;
+
+    }
+};
