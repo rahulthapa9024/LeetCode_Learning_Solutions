@@ -1,0 +1,30 @@
+//  Find the Difference of Two Arrays
+// Easy
+
+
+class Solution {
+public:
+    vector<vector<int>> findDifference(vector<int>& nums1, vector<int>& nums2) {
+        vector<vector<int>> answer;
+        unordered_set<int> n1(nums1.begin(),nums1.end());
+        unordered_set<int>  n2(nums2.begin(),nums2.end());
+        vector<int> first,second;
+
+        for(int x : n1){
+            if(n2.count(x) == 0){
+                first.push_back(x);
+            }
+        }
+
+        for(int x : n2){
+            if(n1.count(x) == 0){
+                second.push_back(x);
+            }
+        }
+
+        answer.push_back(first);
+        answer.push_back(second);
+
+        return answer;
+    }
+};
