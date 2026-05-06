@@ -1,0 +1,34 @@
+// Unique Number of Occurrences
+// Easy 
+
+
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        bool ans = true;
+        unordered_map<int,int> mp;
+        ordered_set<int> st;
+        
+        for(int x : arr ){
+            if(mp.find(x) != mp.end()){
+                mp[x]++;
+            }
+            else{
+                mp[x] = 1;
+            }
+        }
+
+    for(auto x : mp){
+        if( st.count(x.second)){
+            ans = false;
+            break;
+        }
+        else{
+            st.insert(x.second);
+        }
+    }
+
+        return ans;
+
+    }
+};
