@@ -1,0 +1,31 @@
+//  Equal Row and Column Pairs
+// Medium
+
+
+class Solution {
+public:
+    int equalPairs(vector<vector<int>>& grid) {
+
+        //initializing the variables and map only stores unique keys
+        int count = 0;
+        map<vector<int>,int> mp;
+        int n = grid.size();
+
+        // adding each row with its frequency in the map
+        for( int row = 0; row < n; row++ ){
+            mp[grid[row]]++;
+        }
+
+        // build the Column and check if the row and Column are equal or not and if they are equal add the frequency count to the count variable 
+        // here the count is only increased when mp[temp] value is greater than 0
+        for(int c = 0; c < n; c++){
+            vector<int> temp;
+            for( int r = 0; r < n; r++){
+                temp.push_back(grid[r][c]);
+            }
+            count += mp[temp];
+        }
+
+        return count;
+    }
+};

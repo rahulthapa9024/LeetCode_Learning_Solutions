@@ -1,0 +1,26 @@
+// Removing Stars From a String
+// Medium
+
+
+class Solution {
+public:
+    string removeStars(string s) {
+        stack<char> st;
+
+        for(char ch : s){
+            if( ch != '*') st.push(ch);
+            else st.pop();
+        }
+
+        string ans(st.size(),' ');
+        int i = st.size() - 1;
+        while(!st.empty()){
+            ans[i] = st.top();
+            st.pop();
+            i--;
+        }
+
+        return ans;
+        
+    }
+};
