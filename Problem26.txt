@@ -1,0 +1,40 @@
+// Decode String
+// Medium
+class Solution {
+public:
+    string decodeString(string s) {
+        stack<int> counts;
+        stack<string> strings;
+        int num = 0;
+        string curr;
+
+        for(char ch : s){
+            if(isdigit(ch)){
+                num = num * 10 + (ch - '0');
+            }
+            else if(ch == '['){
+                counts.push(num);
+                strings.push(curr);
+
+                num = 0;
+                curr.clear();
+            }
+            else if(ch == ']'){
+                int repeat = counts.top();
+                counts.pop();
+
+                string temp = curr;
+                curr = strings.top();
+                strings.pop();
+
+                while(repeat--){
+                    curr.append(temp);
+                }
+            }
+            else{
+                curr.push_back(ch);
+            }
+        }
+        return curr;
+    }
+};
