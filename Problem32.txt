@@ -1,0 +1,51 @@
+// Maximum Twin Sum of a Linked List
+// Medium
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    int pairSum(ListNode* head) {
+        
+        // first find mid
+        ListNode* fast = head;
+        ListNode* slow = head;
+
+        while( fast != nullptr && fast->next != nullptr ){
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        // reverse from the mid
+        ListNode* mid = slow;
+        ListNode* prevNode = nullptr;
+        ListNode* nextNode = nullptr;
+
+        while( mid != nullptr ){
+            nextNode = mid->next;
+            mid->next = prevNode;
+            prevNode = mid;
+            mid = nextNode;
+        }
+
+        // find the max 
+        int maxSum = INT_MIN;
+        ListNode* curr = head;
+
+        while( prevNode != nullptr ){
+            maxSum = max( maxSum, ( curr->val + prevNode->val ) );
+            curr = curr->next;
+            prevNode = prevNode->next;
+        }
+
+        return maxSum;
+    }
+};
