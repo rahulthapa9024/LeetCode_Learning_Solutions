@@ -1,0 +1,14 @@
+// Single Number
+// Easy
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int ans = 0;
+        for( auto x : nums ){
+            // number with frequency 2 will return 0 and number with 1 frequency will return itself 
+            ans ^= x;
+        }
+        return ans;
+    }
+};

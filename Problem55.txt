@@ -1,0 +1,25 @@
+// House Robber
+// Medium
+
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        int n = nums.size();
+        // if length is 1
+        if( n < 2 ) return nums[0];
+        // creating vector for storing results
+        vector<int> dp(n);
+
+        dp[0] = nums[0];
+        dp[1] = max(nums[0],nums[1]);
+
+        for( int i =2; i < n; i++){
+            // max is either current + sum of its past except last one or not choose current and max is sum of its previous
+            dp[i] = max(dp[i-2]+nums[i],dp[i-1]);
+        }
+
+        // max will be in the last index
+        return dp[n - 1];
+
+    }
+};
