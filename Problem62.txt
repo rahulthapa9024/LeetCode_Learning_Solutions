@@ -1,0 +1,24 @@
+// H-Index
+// Medium
+
+class Solution {
+public:
+    int hIndex(vector<int>& citations) {
+        int papers = citations.size();
+        vector<int> citationsBucket(papers+1,0);
+
+        for(int citation : citations){
+            citationsBucket[min(citation,papers)]++;
+        }
+
+        int citationPapers = 0;
+        for(int hIndex = papers; hIndex >= 0; hIndex--){
+            citationPapers += citationsBucket[hIndex];
+
+            if(citationPapers >= hIndex){
+                return hIndex;
+            }
+        }
+        return 0;
+    }
+};
