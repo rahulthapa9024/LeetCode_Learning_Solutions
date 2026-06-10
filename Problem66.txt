@@ -1,0 +1,43 @@
+//  Ransom Note
+// Easy
+
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        bool ans = true;
+        
+        if(ransomNote.length() > magazine.length()){
+        return !ans;
+        }
+         // creating hash map
+        unordered_map<char,int> RN;
+        unordered_map<char,int> M;
+
+        // filling the hash maps
+        for(int i = 0; i < ransomNote.length(); i++){
+            if(RN.find(ransomNote[i]) != RN.end()){
+                RN[ransomNote[i]]+=1;
+            }
+            else{
+                RN[ransomNote[i]] = 1;
+            }
+        }
+        
+        for(int i = 0; i < magazine.length(); i++){
+            if(M.find(magazine[i]) != M.end()){
+                M[magazine[i]]+=1;
+            }
+            else{
+                M[magazine[i]] = 1;
+            }
+        }
+
+        for(auto& m : RN){
+            if(m.second > M[m.first]){
+                return !ans;
+            }
+        }
+
+        return ans;
+    }
+};
