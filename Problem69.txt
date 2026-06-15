@@ -32,7 +32,7 @@ public:
             j++;
             
             // skipping same values
-            while(nums[j] == nums[j-1] && j > k ){
+            while(nums[j] == nums[j-1] && j < k ){
                 j++;
             }
         }
