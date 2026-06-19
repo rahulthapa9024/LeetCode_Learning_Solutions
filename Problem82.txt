@@ -1,0 +1,46 @@
+// Game of Life
+// Medium
+
+class Solution {
+public:
+    void gameOfLife(vector<vector<int>>& board) {
+        // storing all the neighabours
+        vector<vector<int>> dir = {{1,0},{1,-1},{0,-1},{-1,-1},{-1,0},{-1,1},{0,1},{1,1}};
+        int rows = board.size();
+        int cols = board[0].size();
+
+        // marking the cells as -1 or 2 for there future 
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < cols; j++){
+                int live = 0;
+                for(vector<int> d : dir){
+                    int x = i + d[0];
+                    int y = j + d[1];
+                    if( x >=0 && x < rows && y >= 0 && y < cols && abs(board[x][y]) == 1 ){
+                        live++;
+                    }
+                }
+
+                // now applying the rules
+
+                if( board[i][j] == 1 && ( live < 2 || live > 3 )){
+                    board[i][j] = -1;
+                }
+                if ( board[i][j] == 0 && live == 3){
+                    board[i][j] = 2;
+                }
+            }
+        }
+
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < cols; j++){
+                if( board[i][j] > 0 ){
+                    board[i][j] = 1;
+                }
+                else{
+                    board[i][j] = 0;
+                }
+            }
+        }
+    }
+};
