@@ -33,7 +33,7 @@ public:
                     curr->next = root->left;
                     curr = curr->next;
                 }
-                if( curr->right != nullptr ){
+                if( root->right != nullptr ){
                     curr->next = root->right;
                     curr = curr->next;
                 }
