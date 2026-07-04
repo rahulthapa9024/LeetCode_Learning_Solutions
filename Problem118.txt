@@ -1,0 +1,30 @@
+// Combinations
+// Medium
+
+class Solution {
+public:
+    vector<vector<int>> result;
+
+    void solve(vector<int>& temp,int n,int k,int start){
+        if( k == 0 ){
+            result.push_back(temp);
+            return;
+        }
+
+        if( start > n ) return;
+
+        temp.push_back(start);
+
+        solve(temp,n,k-1,start+1);
+        temp.pop_back();
+        solve(temp,n,k,start+1);
+    }
+    
+    vector<vector<int>> combine(int n, int k) {
+        vector<int> temp;
+
+        solve(temp,n,k,1);
+
+        return result;
+    }
+};
