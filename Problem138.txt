@@ -1,0 +1,42 @@
+// Longest Increasing Subsequence
+// Medium
+
+class Solution {
+public:
+    void replace(vector<int>& vec,int target){
+        int low = 0;
+        int high = vec.size() - 1;
+
+        while( low <= high ){
+            int mid = low + ( high - low ) / 2;
+
+            if( vec[mid] < target){
+                low = mid + 1;
+            }
+
+            else{
+                high = mid - 1;
+            }
+
+        }
+         vec[low] = target;
+    }
+
+    int lengthOfLIS(vector<int>& nums) {
+        if( nums.empty() ) return 0;
+
+        vector<int> vec;
+        vec.push_back(nums[0]);
+
+        for(int i = 1; i < nums.size(); i++){
+            if( nums[i] > vec.back() ){
+                vec.push_back(nums[i]);
+            }
+            else{
+                replace(vec,nums[i]);
+            }
+        }
+
+        return vec.size();
+    }
+};
