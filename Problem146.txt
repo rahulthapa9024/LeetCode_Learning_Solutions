@@ -1,0 +1,28 @@
+// Combination Sum III
+// Medium
+
+class Solution {
+public:
+    vector<vector<int>> result;
+
+    void solve(int k,int n,int start,vector<int>& curr){
+        if( curr.size() == k && n == 0 ){
+            result.push_back(curr);
+            return;
+        }
+
+        if( curr.size() > k || n < 0 ) return;
+
+        for(int i = start; i <= 9; i++){
+            curr.push_back(i);
+            solve(k,n-i,i+1,curr);
+            curr.pop_back();
+        }
+    }
+
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<int> curr;
+        solve(k,n,1,curr);
+        return result;
+    }
+};
